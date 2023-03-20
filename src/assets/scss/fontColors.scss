@@ -1,0 +1,48 @@
+@mixin font-brand-color {
+  color: $brand-color;
+}
+.font-brand-color {
+  color: $brand-color;
+}
+
+@mixin font-white {
+  color: $brand-white;
+}
+.font-white {
+  color: $brand-white;
+}
+
+@mixin font-black {
+  color: $brand-black;
+}
+.font-black {
+  color: $brand-black;
+}
+
+@mixin font-light-gray {
+  color: $light-gray;
+}
+.font-light-gray {
+  color: $light-gray;
+}
+
+@mixin font-gray {
+  color: $gray;
+}
+.font-gray {
+  color: $gray;
+}
+
+@mixin font-medium-gray {
+  color: $medium-gray;
+}
+.font-medium-gray {
+  color: $medium-gray;
+}
+
+@mixin font-dark-gray {
+  color: $medium-gray;
+}
+.font-dark-gray {
+  color: $medium-gray;
+}

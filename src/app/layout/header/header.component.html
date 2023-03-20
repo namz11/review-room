@@ -1,0 +1,38 @@
+<div class="container-fluid">
+  <div class="row">
+    <div
+      class="col-12 px-5 py-4 d-flex flex-row justify-content-between align-items-center"
+    >
+      <app-logo></app-logo>
+      <app-file-chooser
+        projectKey=""
+        [labelTemplateRef]="uploadLabel"
+      ></app-file-chooser>
+      <div
+        [matMenuTriggerFor]="userMenu"
+        class="rounded-circle avatar d-flex align-items-center justify-content-center text-uppercase"
+      >
+        {{ shortName }}
+      </div>
+
+      <mat-menu #userMenu="matMenu" yPosition="below">
+        <button
+          mat-menu-item
+          (click)="signOut()"
+          class="d-flex justify-content-center align-items-center"
+        >
+          <i class="ph-bold ph-sign-out pe-2"></i>
+          Logout
+        </button>
+      </mat-menu>
+    </div>
+    <mat-divider class="col-12"></mat-divider>
+  </div>
+</div>
+
+<ng-template #uploadLabel>
+  <span class="px-2 btn-primary d-flex align-items-center">
+    <i class="ph-fill ph-image fs-5 pe-1"></i>
+    Upload Images
+  </span>
+</ng-template>

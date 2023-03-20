@@ -1,0 +1,52 @@
+<section class="mt-4 d-flex flex-column justify-content-between auth-wrapper">
+  <form [formGroup]="forgotForm" class="mt-3 w-100">
+    <p class="h6 py-2">Forgot password?</p>
+    <div class="form-group">
+      <mat-form-field
+        class="auth-form w-100"
+        [floatLabel]="floatLabelControl.value"
+      >
+        <mat-label>Email</mat-label>
+        <input
+          matInput
+          required
+          placeholder="Enter your registered email"
+          formControlName="email"
+          [ngClass]="{ 'is-invalid': isSubmitted && _form.email.errors }"
+        />
+      </mat-form-field>
+    </div>
+    <div class="d-flex justify-content-start align-items-center">
+      <button
+        mat-flat-button
+        class="btn-primary"
+        [disabled]="isLoading"
+        (click)="forgotPassword()"
+      >
+        Reset Password
+      </button>
+      <span *ngIf="isLoading" class="mx-3 brand-spinner">
+        <mat-spinner [diameter]="30" strokeWidth="1.5"></mat-spinner>
+      </span>
+    </div>
+  </form>
+  <div class="mt-2 flex-grow-1 form-message auth-message">
+    <div *ngIf="isSubmitted">
+      <span *ngIf="_form?.email?.errors?.required"
+        >Please enter email address.</span
+      >
+      <span
+        *ngIf="
+          _form?.email?.errors?.email === true || _form?.email?.errors?.pattern
+        "
+      >
+        Email address is invalid.
+      </span>
+      <span *ngIf="msg2show !== ''">{{ msg2show }}</span>
+    </div>
+  </div>
+  <div class="my-3 font-light-gray" [style.fontSize.px]="12">
+    Know your credentials?
+    <span id="login" [routerLink]="['/auth/signin']" class="ps-1">Log In</span>
+  </div>
+</section>

@@ -3,7 +3,12 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  errorMsg: 'An error has occurred!',
+  baseUrl: 'http://localhost:4600',
+  firebase: {
+    // firebase config goes here
+  },
 };
 
 /*
