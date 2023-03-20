@@ -1,0 +1,76 @@
+<section class="mt-4 d-flex flex-column justify-content-between auth-wrapper">
+  <form [formGroup]="loginForm" class="w-100 pt-2">
+    <p class="h6 py-2">Login</p>
+    <div class="form-group">
+      <mat-form-field
+        class="auth-form w-100"
+        [floatLabel]="floatLabelControl.value"
+      >
+        <mat-label>Email</mat-label>
+        <input
+          matInput
+          required
+          placeholder="Enter your email address"
+          formControlName="email"
+          [ngClass]="{ 'is-invalid': isSubmitted && _form.email.errors }"
+        />
+      </mat-form-field>
+    </div>
+    <div class="form-group">
+      <mat-form-field
+        class="auth-form w-100"
+        [floatLabel]="floatLabelControl.value"
+      >
+        <mat-label>Password</mat-label>
+        <input
+          matInput
+          required
+          placeholder="Password"
+          type="password"
+          formControlName="password"
+          [ngClass]="{ 'is-invalid': isSubmitted && _form.password.errors }"
+        />
+      </mat-form-field>
+    </div>
+    <div class="form-group d-flex justify-content-end align-items-center">
+      <span id="forgot" class="auth-message" [routerLink]="['/auth/forgot']">
+        Forgot Password?
+      </span>
+    </div>
+    <div class="mt-4 d-flex justify-content-between align-items-center">
+      <button
+        mat-flat-button
+        class="flex-fill btn-primary"
+        [disabled]="isLoading"
+        (click)="login()"
+      >
+        Login
+      </button>
+      <button
+        mat-stroked-button
+        class="ms-3 btn-stroked-primary"
+        [routerLink]="['/auth/signup']"
+      >
+        Create account
+      </button>
+    </div>
+  </form>
+  <div class="mt-2 flex-grow-1 form-message auth-message">
+    <div *ngIf="isSubmitted">
+      <span
+        *ngIf="
+          _form?.email?.errors?.email === true || _form?.email?.errors?.pattern
+        "
+        >Email address is invalid</span
+      >
+      <span *ngIf="msg2show !== ''">{{ msg2show }}</span>
+    </div>
+  </div>
+  <div class="my-3 font-light-gray" [style.fontSize.px]="12">
+    By signing up you agree to our term and conditions
+  </div>
+</section>
+
+<!-- <span *ngIf="isLoading" class="mx-3 brand-spinner">
+    <mat-spinner [diameter]="30" strokeWidth="1.5"></mat-spinner>
+</span> -->

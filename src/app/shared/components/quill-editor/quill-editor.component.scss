@@ -1,0 +1,25 @@
+@import "../../../../assets/scss/colors";
+@import "../../../../assets/scss/mixins";
+
+.canvas-editor {
+  z-index: 2;
+  position: absolute;
+  background: transparent;
+  height: 198px;
+  width: 328px !important;
+}
+.ql-container.ql-snow {
+  z-index: 2;
+  height: 107px !important;
+  border: 1px solid $dark-gray;
+  background-color: $brand-white;
+}
+.quill-footer {
+  z-index: 2;
+  height: 40px !important;
+  border: 1px solid $dark-gray;
+  border-top: none;
+  border-bottom-left-radius: 7px;
+  border-bottom-right-radius: 7px;
+  background-color: $brand-white;
+}

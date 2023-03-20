@@ -1,0 +1,36 @@
+@import "./colors.scss";
+@import "./mixins";
+
+.form-group {
+  margin: 0px;
+
+  label {
+    .asterisk {
+      color: $brand-color;
+    }
+  }
+  input {
+    box-shadow: none;
+    @include border-radius;
+    border: 1px solid $light-gray;
+    padding: 1.25rem;
+    height: 42px;
+  }
+}
+
+.invalid-message {
+  font-size: 12px;
+  font-weight: 500;
+  color: $brand-color;
+}
+
+.form-message {
+  margin-top: 5px;
+  padding: 0px;
+  height: 21px;
+}
+
+::ng-deep .mat-form-field-underline,
+::ng-deep .mat-form-field-ripple {
+  background-color: transparent !important;
+}

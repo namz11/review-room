@@ -1,0 +1,20 @@
+<div [class]="className">
+  <div id="{{ id }}"></div>
+  <div class="editor-footer px-3 d-flex justify-content-end align-items-center">
+    <button
+      mat-flat-button
+      *ngIf="showCancel"
+      (click)="cancelPin()"
+      class="px-3 btn-secondary text-uppercase mini-btn d-flex align-items-center"
+    >
+      cancel
+    </button>
+    <button
+      mat-flat-button
+      class="ms-3 px-3 btn-primary text-uppercase mini-btn d-flex align-items-center"
+      (click)="savePin()"
+    >
+      save
+    </button>
+  </div>
+</div>
