@@ -1,211 +1,239 @@
 <div class="m-3">
-  <div class="row card-container align-items-stretch">
-    <div
-      *ngFor="let project of projects; index as i"
-      class="col-12 col-sm-6 col-md-4 col-lg-3"
-    >
-      <div class="project-card">
-        <app-new-tag
-          [isProject]="true"
-          *ngIf="checkNewTag(project)"
-        ></app-new-tag>
-
+    <div class="row card-container align-items-stretch">
         <div
-          class="origin my-cont"
-          #CdkOverlayOrigin="cdkOverlayOrigin"
-          cdkOverlayOrigin
-          [class.hover]="isOpened"
+            *ngFor="let project of projects; index as i"
+            class="col-12 col-sm-6 col-md-4 col-lg-3"
         >
-          <div class="overlay-container">
-            <span
-              class="hover-icons m-2"
-              (click)="confirmDeleteProject(project)"
-            >
-              <i class="ph ph-trash-simple"></i>
-            </span>
-            <div class="overlay">
-              <span
-                class="px-2 btn-primary d-flex align-items-center"
-                (click)="openMarkup(project)"
-              >
-                <i class="ph ph-arrow-square-out fs-5 pe-1"></i>
-                Open markup
-              </span>
-            </div>
-          </div>
-          <img [src]="project.thumbnail.url" class="p-4 image" />
-        </div>
+            <div class="project-card">
+                <app-new-tag
+                    [isProject]="true"
+                    *ngIf="checkNewTag(project)"
+                ></app-new-tag>
 
-        <div class="content p-3">
-          <div [id]="project.key" class="editable d-flex align-items-center">
-            <span
-              contenteditable="true"
-              (blur)="onEditableBlur($event, project.key, i)"
-              (keyup)="onEditableKeyup($event, project.key, i)"
-              class="editable-name"
-            >
-              {{ project.name }}
-            </span>
-            <span class="ps-1 edit-name-icon">
-              <i class="ph ph-pencil-simple"></i>
-            </span>
-            <span *ngIf="project.isLoading" class="ms-2 upload-spinner">
-              <mat-spinner [diameter]="16" strokeWidth="1"></mat-spinner>
-            </span>
-          </div>
-          <div class="time-ago-text">
-            Updated {{ project.updatedAt | timeago : live }}
-          </div>
-          <div
-            class="d-flex mt-2 justify-content-between align-items-center"
-            [style.height.px]="36"
-          >
-            <div
-              class="font-brand-color d-flex align-items-center justify-content-start"
-            >
-              <i class="ph ph-chat-circle fs-5"></i>
-              <span class="px-1">{{ project.commentCount }}</span>
-              <i class="ph ph-image fs-5 px-1"></i>
-              <span class="px-1">{{ project.uploadCount }}</span>
+                <div
+                    class="origin my-cont"
+                    #CdkOverlayOrigin="cdkOverlayOrigin"
+                    cdkOverlayOrigin
+                    [class.hover]="isOpened"
+                >
+                    <div class="overlay-container">
+                        <span
+                            class="hover-icons m-2"
+                            (click)="confirmDeleteProject(project)"
+                        >
+                            <i class="ph ph-trash-simple"></i>
+                        </span>
+                        <div class="overlay">
+                            <span
+                                class="px-2 btn-primary d-flex align-items-center"
+                                (click)="openMarkup(project)"
+                            >
+                                <i class="ph ph-arrow-square-out fs-5 pe-1"></i>
+                                Open markup
+                            </span>
+                        </div>
+                    </div>
+                    <img [src]="project.thumbnail.url" class="p-4 image" />
+                </div>
+
+                <div class="content p-3">
+                    <div
+                        [id]="project.key"
+                        class="editable d-flex align-items-center"
+                    >
+                        <span
+                            contenteditable="true"
+                            (blur)="onEditableBlur($event, project.key, i)"
+                            (keyup)="onEditableKeyup($event, project.key, i)"
+                            class="editable-name"
+                        >
+                            {{ project.name }}
+                        </span>
+                        <span class="ps-1 edit-name-icon">
+                            <i class="ph ph-pencil-simple"></i>
+                        </span>
+                        <span
+                            *ngIf="project.isLoading"
+                            class="ms-2 upload-spinner"
+                        >
+                            <mat-spinner
+                                [diameter]="16"
+                                strokeWidth="1"
+                            ></mat-spinner>
+                        </span>
+                    </div>
+                    <div class="time-ago-text">
+                        Updated {{ project.updatedAt | timeago : live }}
+                    </div>
+                    <div
+                        class="d-flex mt-2 justify-content-between align-items-center"
+                        [style.height.px]="36"
+                    >
+                        <div
+                            class="font-brand-color d-flex align-items-center justify-content-start"
+                        >
+                            <i class="ph ph-chat-circle fs-5"></i>
+                            <span class="px-1">{{ project.commentCount }}</span>
+                            <i class="ph ph-image fs-5 px-1"></i>
+                            <span class="px-1">{{ project.uploadCount }}</span>
+                        </div>
+                        <div class="share-wrapper">
+                            <button
+                                mat-flat-button
+                                class="btn-primary d-flex justify-content-center align-items-center"
+                                (click)="openShare(project)"
+                            >
+                                <i class="ph ph-share-fat fs-6 pe-1"></i>
+                                <span>Share</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="share-wrapper">
-              <button
-                mat-flat-button
-                class="btn-primary d-flex justify-content-center align-items-center"
-                (click)="openShare(project)"
-              >
-                <i class="ph ph-share-fat fs-6 pe-1"></i>
-                <span>Share</span>
-              </button>
-            </div>
-          </div>
         </div>
-      </div>
     </div>
-  </div>
 </div>
 
 <ng-template #deleteProjectModal let-modal>
-  <div class="modal-header d-flex justify-content-end">
-    <div class="close" role="button" (click)="closeConfirmModal()">
-      <span class="modal-close">&times;</span>
+    <div class="modal-header d-flex justify-content-end">
+        <div class="close" role="button" (click)="closeConfirmModal()">
+            <span class="modal-close">&times;</span>
+        </div>
     </div>
-  </div>
-  <div class="modal-body mb-3">
-    <div
-      class="d-flex flex-column justify-content-center align-items-center delete-modal"
-    >
-      <p>Delete "{{ project2delete?.name }}"</p>
-      <p
-        class="confirm-delete-icon"
-        [style.fontSize.px]="12"
-        [style.fontWeight]="500"
-      >
-        Warning, this cannot be undone.
-      </p>
-      <p [style.fontSize.px]="14">All comments will be deleted.</p>
-      <span
-        class="btn-danger d-flex justify-content-center align-items-center min-btn"
-        (click)="deleteProject()"
-        >Delete</span
-      >
+    <div class="modal-body mb-3">
+        <div
+            class="d-flex flex-column justify-content-center align-items-center delete-modal"
+        >
+            <p>Delete "{{ project2delete?.name }}"</p>
+            <p
+                class="confirm-delete-icon"
+                [style.fontSize.px]="12"
+                [style.fontWeight]="500"
+            >
+                Warning, this cannot be undone.
+            </p>
+            <p [style.fontSize.px]="14">All comments will be deleted.</p>
+            <span
+                class="btn-danger d-flex justify-content-center align-items-center min-btn"
+                (click)="deleteProject()"
+            >
+                Delete
+            </span>
+        </div>
     </div>
-  </div>
 </ng-template>
 
 <ng-template #share let-modal>
-  <div class="modal-body">
-    <div class="d-flex justify-content-end mb-3">
-      <div class="close" role="button" (click)="closeShare()">
-        <span class="modal-close">&times;</span>
-      </div>
-    </div>
-    <div class="mx-5">
-      <div class="d-flex justify-content-center">
-        <h5>Invite people to this project</h5>
-      </div>
-      <form [formGroup]="shareForm">
-        <div class="error-message">
-          <div
-            *ngIf="shareSubmitted && _shareForm.email.errors"
-            class="invalid-message"
-          >
-            <span *ngIf="_shareForm.email.errors.required"
-              >Email is required!</span
-            >
-            <span *ngIf="_shareForm.email.errors.multipleEmail">
-              Please enter valid email!
-            </span>
-          </div>
-          <ngb-toast *ngIf="shareError" [autohide]="false" class="share-toast">
-            <div class="d-flex justify-content-between align-items-start">
-              <span>Try again!</span>
-              <span
-                aria-hidden="true"
-                (click)="shareError = false"
-                class="clickable"
-                >&times;</span
-              >
+    <div class="modal-body">
+        <div class="d-flex justify-content-end mb-3">
+            <div class="close" role="button" (click)="closeShare()">
+                <span class="modal-close">&times;</span>
             </div>
-          </ngb-toast>
         </div>
-        <div class="my-3 d-flex justify-content-center align-items-center">
-          <div class="flex-fill">
-            <mat-form-field class="multiple-email-wrapper w-100">
-              <mat-chip-list #chipList multiple formControlName="email">
-                <mat-chip
-                  *ngFor="let email of _shareForm.email.value; index as i"
-                  [selectable]="shareChipsProps.selectable"
-                  [removable]="shareChipsProps.removable"
-                  (removed)="removeEmail(i)"
-                  class="d-flex justify-content-center align-items-center"
+        <div class="mx-5">
+            <div class="d-flex justify-content-center">
+                <h5>Invite people to this project</h5>
+            </div>
+            <form [formGroup]="shareForm">
+                <div class="error-message">
+                    <div
+                        *ngIf="shareSubmitted && _shareForm.email.errors"
+                        class="invalid-message"
+                    >
+                        <span *ngIf="_shareForm.email.errors.required">
+                            Email is required!
+                        </span>
+                        <span *ngIf="_shareForm.email.errors.multipleEmail">
+                            Please enter valid email!
+                        </span>
+                    </div>
+                    <ngb-toast
+                        *ngIf="shareError"
+                        [autohide]="false"
+                        class="share-toast"
+                    >
+                        <div
+                            class="d-flex justify-content-between align-items-start"
+                        >
+                            <span>Try again!</span>
+                            <span
+                                aria-hidden="true"
+                                (click)="shareError = false"
+                                class="clickable"
+                            >
+                                &times;
+                            </span>
+                        </div>
+                    </ngb-toast>
+                </div>
+                <div
+                    class="my-3 d-flex justify-content-center align-items-center"
                 >
-                  {{ email }}
-                  <i
-                    matChipRemove
-                    class="ph-fill ph-x-circle fs-5"
-                    *ngIf="shareChipsProps.removable"
-                  ></i>
-                </mat-chip>
-                <input
-                  placeholder="Enter an email address"
-                  [matChipInputFor]="chipList"
-                  [matChipInputSeparatorKeyCodes]="
-                    shareChipsProps.separatorKeysCodes
-                  "
-                  [matChipInputAddOnBlur]="shareChipsProps.addOnBlur"
-                  (matChipInputTokenEnd)="addEmail($event)"
-                />
-              </mat-chip-list>
-            </mat-form-field>
-          </div>
-          <button
-            id="share-btn"
-            mat-flat-button
-            [disabled]="isLoading"
-            (click)="handleShare()"
-            class="ms-3 px-3 btn-primary d-flex justify-content-center align-items-center btn-rounded min-btn"
-          >
-            Share
-          </button>
+                    <div class="flex-fill">
+                        <mat-form-field class="multiple-email-wrapper w-100">
+                            <mat-chip-list
+                                #chipList
+                                multiple
+                                formControlName="email"
+                            >
+                                <mat-chip
+                                    *ngFor="
+                                        let email of _shareForm.email.value;
+                                        index as i
+                                    "
+                                    [selectable]="shareChipsProps.selectable"
+                                    [removable]="shareChipsProps.removable"
+                                    (removed)="removeEmail(i)"
+                                    class="d-flex justify-content-center align-items-center"
+                                >
+                                    {{ email }}
+                                    <i
+                                        matChipRemove
+                                        class="ph-fill ph-x-circle fs-5"
+                                        *ngIf="shareChipsProps.removable"
+                                    ></i>
+                                </mat-chip>
+                                <input
+                                    placeholder="Enter an email address"
+                                    [matChipInputFor]="chipList"
+                                    [matChipInputSeparatorKeyCodes]="
+                                        shareChipsProps.separatorKeysCodes
+                                    "
+                                    [matChipInputAddOnBlur]="
+                                        shareChipsProps.addOnBlur
+                                    "
+                                    (matChipInputTokenEnd)="addEmail($event)"
+                                />
+                            </mat-chip-list>
+                        </mat-form-field>
+                    </div>
+                    <button
+                        id="share-btn"
+                        mat-flat-button
+                        [disabled]="isLoading"
+                        (click)="handleShare()"
+                        class="ms-3 px-3 btn-primary d-flex justify-content-center align-items-center btn-rounded min-btn"
+                    >
+                        Share
+                    </button>
+                </div>
+            </form>
+            <div class="mt-5 d-flex justify-content-center">
+                <h5>Your project invite link</h5>
+            </div>
+            <div class="my-4 d-flex justify-content-center align-items-center">
+                <div class="flex-fill text-truncate">
+                    {{ _shareForm.link.value }}
+                </div>
+                <button
+                    mat-flat-button
+                    (click)="copyLink()"
+                    class="ms-3 px-3 btn-primary d-flex justify-content-center align-items-center flex-shrink-0 btn-rounded min-btn"
+                >
+                    {{ copyText }}
+                </button>
+                <!-- [cdkCopyToClipboard]="copyLink()"-->
+            </div>
         </div>
-      </form>
-      <div class="mt-5 d-flex justify-content-center">
-        <h5>Your project invite link</h5>
-      </div>
-      <div class="my-4 d-flex justify-content-center align-items-center">
-        <div class="flex-fill text-truncate">
-          {{ _shareForm.link.value }}
-        </div>
-        <button
-          mat-flat-button
-          (click)="copyLink()"
-          class="ms-3 px-3 btn-primary d-flex justify-content-center align-items-center flex-shrink-0 btn-rounded min-btn"
-        >
-          {{ copyText }}
-        </button>
-        <!-- [cdkCopyToClipboard]="copyLink()"-->
-      </div>
     </div>
-  </div>
 </ng-template>

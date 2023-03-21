@@ -1,364 +1,364 @@
-@import "../../../../assets/scss/colors";
-@import "../../../../assets/scss/mixins";
+@import '../../../../assets/scss/colors';
+@import '../../../../assets/scss/mixins';
 
 // canvas -> image
 .bottom-panel {
-  width: 100%;
-  height: 60px;
+    width: 100%;
+    height: 60px;
 }
 .canvas {
-  position: relative;
-  border: 2px solid $brand-color;
-  background-color: $brand-white;
-  height: calc(100vh - 60px);
-  margin-right: 2px;
+    position: relative;
+    border: 2px solid $brand-color;
+    background-color: $brand-white;
+    height: calc(100vh - 60px);
+    margin-right: 2px;
 }
 .canvas-container {
-  position: relative;
-  display: block;
-  width: 100%;
-  height: calc(
-    100vh - 60px - 60px - 2px
-  ); // 60= header height, 2px= canvas border
-  cursor: url(../../../../assets/chat-circle-dots.svg),
-    url(../../../../assets/chat-circle-dots.png), crosshair;
+    position: relative;
+    display: block;
+    width: 100%;
+    height: calc(
+        100vh - 60px - 60px - 2px
+    ); // 60= header height, 2px= canvas border
+    cursor: url(../../../../assets/chat-circle-dots.svg),
+        url(../../../../assets/chat-circle-dots.png), crosshair;
 }
 .canvas-image {
-  max-width: 100%;
-  max-height: calc(100% - 2px);
-  height: auto;
+    max-width: 100%;
+    max-height: calc(100% - 2px);
+    height: auto;
 }
 
 // canvas -> others
 .markup-pin {
-  position: absolute;
-  border-radius: 50%;
-  height: 30px;
-  width: 30px;
-  text-align: center;
-  background: $brand-color;
-  border: 2px solid $brand-white;
-  box-shadow: 0px 2px 6px -5px #000000fa;
-  cursor: pointer;
-  z-index: 1;
+    position: absolute;
+    border-radius: 50%;
+    height: 30px;
+    width: 30px;
+    text-align: center;
+    background: $brand-color;
+    border: 2px solid $brand-white;
+    box-shadow: 0px 2px 6px -5px #000000fa;
+    cursor: pointer;
+    z-index: 1;
 }
 .markup-pin-content {
-  z-index: inherit;
-  margin: auto;
-  color: $brand-white;
+    z-index: inherit;
+    margin: auto;
+    color: $brand-white;
 }
 .resolved-pin {
-  background: $gray;
-  cursor: none;
+    background: $gray;
+    cursor: none;
 }
 .image-header {
-  font-size: 14px;
-  color: $medium-gray;
-  height: 60px;
-  border-bottom: 1px solid $light-gray;
+    font-size: 14px;
+    color: $medium-gray;
+    height: 60px;
+    border-bottom: 1px solid $light-gray;
 }
 .header-middle {
-  position: absolute;
-  margin: 0 40%;
-  width: 20%;
+    position: absolute;
+    margin: 0 40%;
+    width: 20%;
 }
 .nav-icons {
-  cursor: pointer;
-  margin: 0px 5px;
-  color: $medium-gray;
+    cursor: pointer;
+    margin: 0px 5px;
+    color: $medium-gray;
 
-  &:hover {
-    color: $brand-black;
-  }
+    &:hover {
+        color: $brand-black;
+    }
 }
 .sidebar-toggle {
-  position: absolute;
-  right: 0;
-  top: 50%;
-  z-index: 2;
+    position: absolute;
+    right: 0;
+    top: 50%;
+    z-index: 2;
 }
 .btn-toggle {
-  outline: none;
-  border: none;
-  cursor: pointer;
-  width: 20px;
-  height: 36px;
-  border-radius: 18px 0 0 18px;
-  background-color: $brand-color;
-  position: relative;
+    outline: none;
+    border: none;
+    cursor: pointer;
+    width: 20px;
+    height: 36px;
+    border-radius: 18px 0 0 18px;
+    background-color: $brand-color;
+    position: relative;
 }
 .sidebar-toggle-icon {
-  position: absolute;
-  top: 8px;
-  left: 3px;
-  color: $brand-white;
+    position: absolute;
+    top: 8px;
+    left: 3px;
+    color: $brand-white;
 }
 
 // image sidebar
 .image-label {
-  margin: 0px;
-  cursor: pointer;
+    margin: 0px;
+    cursor: pointer;
 }
 .image-sidebar {
-  width: 140px;
-  height: calc(100vh - 60px);
-  overflow-y: auto;
-  background-color: $light-blue;
+    width: 140px;
+    height: calc(100vh - 60px);
+    overflow-y: auto;
+    background-color: $light-blue;
 }
 .image-container {
-  position: relative;
-  display: block;
-  margin-top: 5px;
-  height: 100px;
-  width: 100px;
+    position: relative;
+    display: block;
+    margin-top: 5px;
+    height: 100px;
+    width: 100px;
 
-  border: 1px solid $light-gray;
-  @include border-radius;
-  overflow: hidden;
+    border: 1px solid $light-gray;
+    @include border-radius;
+    overflow: hidden;
 
-  .hover-overlay {
-    display: none;
-  }
-  &:hover {
     .hover-overlay {
-      display: block;
+        display: none;
     }
-  }
+    &:hover {
+        .hover-overlay {
+            display: block;
+        }
+    }
 }
 .image-container.selected {
-  border: 2px solid $brand-color;
-  @include border-radius;
-  overflow: hidden;
+    border: 2px solid $brand-color;
+    @include border-radius;
+    overflow: hidden;
 
-  .image-sb {
-    border: none;
-  }
+    .image-sb {
+        border: none;
+    }
 }
 .image-sb {
-  height: 100%;
-  width: auto;
+    height: 100%;
+    width: auto;
 }
 .img-name {
-  width: 100px;
-  color: $dark-gray;
-  font-size: 12px;
-  text-transform: lowercase;
+    width: 100px;
+    color: $dark-gray;
+    font-size: 12px;
+    text-transform: lowercase;
 }
 .hover-overlay {
-  display: none;
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.55);
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.55);
 }
 ::ng-deep .modal-content {
-  width: 80%;
+    width: 80%;
 }
 
 // comment sidebar
 .collapse-icon {
-  position: absolute;
-  right: 10px;
+    position: absolute;
+    right: 10px;
 }
 ::ng-deep .mat-button-toggle-group {
-  border: none !important;
+    border: none !important;
 }
 ::ng-deep .mat-button-toggle {
-  color: $dark-gray;
-  background-color: $light-gray;
-  border: none !important;
+    color: $dark-gray;
+    background-color: $light-gray;
+    border: none !important;
 }
 ::ng-deep .mat-button-toggle:first-child {
-  border-top-left-radius: 7px;
-  border-bottom-left-radius: 7px;
+    border-top-left-radius: 7px;
+    border-bottom-left-radius: 7px;
 }
 ::ng-deep .mat-button-toggle:last-child {
-  border-top-right-radius: 7px;
-  border-bottom-right-radius: 7px;
+    border-top-right-radius: 7px;
+    border-bottom-right-radius: 7px;
 }
 ::ng-deep .mat-button-toggle.mat-button-toggle-checked {
-  color: $brand-white;
-  background-color: $brand-color;
+    color: $brand-white;
+    background-color: $brand-color;
 }
 .footer-container {
-  display: none;
+    display: none;
 }
 .child-container {
-  display: block;
+    display: block;
 }
 .view-pin {
-  @include circle-pin(30px);
-  position: absolute;
+    @include circle-pin(30px);
+    position: absolute;
 
-  &:hover {
-    color: $dark-gray;
-    font-weight: bold;
-  }
+    &:hover {
+        color: $dark-gray;
+        font-weight: bold;
+    }
 }
 .com-count {
-  @include circle-pin(20px);
+    @include circle-pin(20px);
 }
 .com-count.selected {
-  color: $brand-color;
-  background-color: $light-blue;
+    color: $brand-color;
+    background-color: $light-blue;
 }
 .msg-card.view {
-  @include comment-card;
+    @include comment-card;
 
-  &:hover {
-    border: 2px solid $brand-color;
-    .footer-container {
-      display: block;
+    &:hover {
+        border: 2px solid $brand-color;
+        .footer-container {
+            display: block;
+        }
+        .child-container {
+            display: none;
+        }
     }
-    .child-container {
-      display: none;
-    }
-  }
 }
 .msg-card {
-  @include comment-card;
-  background-color: $brand-white;
-  position: relative;
+    @include comment-card;
+    background-color: $brand-white;
+    position: relative;
 }
 .msg-card.new-comment {
-  border-bottom-left-radius: 0px !important;
-  border-bottom-right-radius: 0px !important;
-  box-shadow: none !important;
-  border: none !important;
+    border-bottom-left-radius: 0px !important;
+    border-bottom-right-radius: 0px !important;
+    box-shadow: none !important;
+    border: none !important;
 }
 .boxShadow {
-  box-shadow: 0px 2px 6px -5px #000000fa;
-  border: 1px solid $light-gray;
+    box-shadow: 0px 2px 6px -5px #000000fa;
+    border: 1px solid $light-gray;
 }
 .name {
-  color: $dark-gray;
-  font-weight: 600;
+    color: $dark-gray;
+    font-weight: 600;
 }
 .tab {
-  position: relative;
-  cursor: pointer;
-  padding: 5px 20px;
-  @include border-radius;
-  font-size: 14px;
-  color: $brand-black;
-  background-color: $light-blue;
+    position: relative;
+    cursor: pointer;
+    padding: 5px 20px;
+    @include border-radius;
+    font-size: 14px;
+    color: $brand-black;
+    background-color: $light-blue;
 }
 .tab-selected {
-  color: $brand-white;
-  background-color: $brand-color;
+    color: $brand-white;
+    background-color: $brand-color;
 }
 .comment-sidebar {
-  width: 320px;
-  background-color: $bg-blue;
-  height: calc(100vh - 60px);
-  overflow-y: auto;
+    width: 320px;
+    background-color: $bg-blue;
+    height: calc(100vh - 60px);
+    overflow-y: auto;
 }
 .child-comment-container {
-  font-size: 12px;
-  padding: 0px 20px;
-  border: none;
-  border-top: 1px solid $bg-blue;
-  background-color: $brand-white;
-  position: relative;
+    font-size: 12px;
+    padding: 0px 20px;
+    border: none;
+    border-top: 1px solid $bg-blue;
+    background-color: $brand-white;
+    position: relative;
 }
 .timeline-dots {
-  margin: 0px;
-  margin-right: 20px;
-  color: $light-gray;
+    margin: 0px;
+    margin-right: 20px;
+    color: $light-gray;
 }
 .content-card {
-  cursor: pointer;
-  padding: 15px 0px 10px;
-  width: 100%;
+    cursor: pointer;
+    padding: 15px 0px 10px;
+    width: 100%;
 }
 .small-dot {
-  font-size: 6px;
+    font-size: 6px;
 }
 .big-dot {
-  font-size: 12px;
+    font-size: 12px;
 }
 .comment-box-action {
-  color: $medium-gray;
-  font-size: 1rem;
+    color: $medium-gray;
+    font-size: 1rem;
 
-  &:hover,
-  &:focus {
-    color: $brand-black;
-  }
+    &:hover,
+    &:focus {
+        color: $brand-black;
+    }
 }
 
 ::ng-deep.mat-tab-label,
 ::ng-deep.mat-tab-label-active {
-  min-width: 136px !important;
-  height: 40px !important;
-  padding: 5px 10px !important;
-  margin: 2px 3px !important;
-  background-color: transparent;
-  font-weight: 700;
-  opacity: 1 !important;
+    min-width: 136px !important;
+    height: 40px !important;
+    padding: 5px 10px !important;
+    margin: 2px 3px !important;
+    background-color: transparent;
+    font-weight: 700;
+    opacity: 1 !important;
 }
 ::ng-deep.mat-tab-label {
-  color: $gray;
+    color: $gray;
 }
 ::ng-deep.mat-tab-label.mat-tab-label-active {
-  color: $dark-gray;
+    color: $dark-gray;
 }
 ::ng-deep.mat-ink-bar {
-  background-color: $brand-color !important;
+    background-color: $brand-color !important;
 }
 
 .ic-hover {
-  color: $medium-gray;
+    color: $medium-gray;
 
-  &:hover {
-    color: $dark-gray;
-  }
+    &:hover {
+        color: $dark-gray;
+    }
 }
 #share-btn {
-  margin-bottom: 1.25em;
+    margin-bottom: 1.25em;
 }
 
 ::ng-deep .mat-form-field-underline,
 ::ng-deep .mat-form-field-ripple {
-  background-color: transparent !important;
+    background-color: transparent !important;
 }
 #signin {
-  cursor: pointer;
-  color: $brand-color;
-  &:hover {
-    text-decoration: underline;
-  }
+    cursor: pointer;
+    color: $brand-color;
+    &:hover {
+        text-decoration: underline;
+    }
 }
 #guest-msg {
-  margin-bottom: 5px;
-  padding: 0px;
-  height: 21px;
+    margin-bottom: 5px;
+    padding: 0px;
+    height: 21px;
 }
 .modal-body .close:focus-visible {
-  outline: none;
+    outline: none;
 }
 
 .share-invite {
-  border: 1px solid $bg-blue;
-  background-color: $bg-blue;
-  font-size: 1rem;
-  @include border-radius;
-  color: $medium-gray;
+    border: 1px solid $bg-blue;
+    background-color: $bg-blue;
+    font-size: 1rem;
+    @include border-radius;
+    color: $medium-gray;
 }
 .copy-btn {
-  color: $brand-color;
-  font-size: 1.25rem;
-  cursor: pointer;
+    color: $brand-color;
+    font-size: 1.25rem;
+    cursor: pointer;
 
-  &:hover {
-    color: $brand-primary-color;
-  }
+    &:hover {
+        color: $brand-primary-color;
+    }
 }
 
 .mat-chip.mat-standard-chip.mat-chip-disabled {
-  opacity: 1;
-  background-color: $bg-blue;
-  color: $medium-gray;
+    opacity: 1;
+    background-color: $bg-blue;
+    color: $medium-gray;
 }

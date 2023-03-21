@@ -15,32 +15,32 @@ import { NewTagComponent } from './components/new-tag/new-tag.component';
 import { LogoComponent } from './components/logo/logo.component';
 
 @NgModule({
-  declarations: [
-    FileChooserComponent,
-    Bytes2String,
-    QuillEditorComponent,
-    QuillViewerComponent,
-    EditorComponent,
-    NewTagComponent,
-    LogoComponent,
-  ],
-  imports: [
-    CommonModule,
-    FormsModule,
-    ReactiveFormsModule,
-    MatSnackBarModule,
-    MatProgressSpinnerModule,
-    MatButtonModule,
-    OverlayModule,
-  ],
-  exports: [
-    FileChooserComponent,
-    Bytes2String,
-    QuillEditorComponent,
-    QuillViewerComponent,
-    EditorComponent,
-    NewTagComponent,
-    LogoComponent,
-  ],
+    declarations: [
+        FileChooserComponent,
+        Bytes2String,
+        QuillEditorComponent,
+        QuillViewerComponent,
+        EditorComponent,
+        NewTagComponent,
+        LogoComponent,
+    ],
+    imports: [
+        CommonModule,
+        FormsModule,
+        ReactiveFormsModule,
+        MatSnackBarModule,
+        MatProgressSpinnerModule,
+        MatButtonModule,
+        OverlayModule,
+    ],
+    exports: [
+        FileChooserComponent,
+        Bytes2String,
+        QuillEditorComponent,
+        QuillViewerComponent,
+        EditorComponent,
+        NewTagComponent,
+        LogoComponent,
+    ],
 })
 export class SharedModule {}

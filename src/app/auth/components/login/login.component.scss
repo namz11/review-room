@@ -1,12 +1,12 @@
-@import "../../../../assets/scss/mixins";
-@import "../../../../assets/scss/colors";
+@import '../../../../assets/scss/mixins';
+@import '../../../../assets/scss/colors';
 
 .form-group {
-  margin-bottom: 10px;
+    margin-bottom: 10px;
 }
 #forgot {
-  cursor: pointer;
-  &:hover {
-    text-decoration: underline;
-  }
+    cursor: pointer;
+    &:hover {
+        text-decoration: underline;
+    }
 }

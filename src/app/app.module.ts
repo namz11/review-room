@@ -26,28 +26,28 @@ import { ErrorInterceptor } from '@app/auth/services/auth.error.interceptor';
 import { LayoutModule } from '@app/layout/layout.module';
 
 @NgModule({
-  declarations: [AppComponent],
-  imports: [
-    BrowserModule,
-    RouterModule.forRoot([]),
-    BrowserAnimationsModule,
-    HttpClientModule,
-    NgbModule,
-    LayoutModule,
-    TimeagoModule.forRoot(),
+    declarations: [AppComponent],
+    imports: [
+        BrowserModule,
+        RouterModule.forRoot([]),
+        BrowserAnimationsModule,
+        HttpClientModule,
+        NgbModule,
+        LayoutModule,
+        TimeagoModule.forRoot(),
 
-    AngularFireModule.initializeApp(environment.firebase),
-    AngularFireDatabaseModule,
-    AngularFireAuthModule,
-    AngularFirestoreModule,
-    AngularFireStorageModule,
+        AngularFireModule.initializeApp(environment.firebase),
+        AngularFireDatabaseModule,
+        AngularFireAuthModule,
+        AngularFirestoreModule,
+        AngularFireStorageModule,
 
-    AngularResizeEventModule,
-  ],
-  providers: [
-    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
-    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
-  ],
-  bootstrap: [AppComponent],
+        AngularResizeEventModule,
+    ],
+    providers: [
+        { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
+        { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
+    ],
+    bootstrap: [AppComponent],
 })
 export class AppModule {}

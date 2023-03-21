@@ -17,29 +17,29 @@ import { DashboardComponent } from '@app/dashboard/components/dashboard/dashboar
 
 // ticks every 1min
 export class CustomClock extends TimeagoClock {
-  tick(then: number): Observable<number> {
-    return interval(60000);
-  }
+    tick(then: number): Observable<number> {
+        return interval(60000);
+    }
 }
 
 @NgModule({
-  declarations: [DashboardComponent],
-  imports: [
-    CommonModule,
-    SharedModule,
-    DashboardRoutingModule,
-    OverlayModule,
-    MatButtonModule,
-    MatProgressSpinnerModule,
-    MatFormFieldModule,
-    ClipboardModule,
-    MatChipsModule,
-    NgbModule,
-    FormsModule,
-    ReactiveFormsModule,
-    TimeagoModule.forChild({
-      clock: { provide: TimeagoClock, useClass: CustomClock },
-    }),
-  ],
+    declarations: [DashboardComponent],
+    imports: [
+        CommonModule,
+        SharedModule,
+        DashboardRoutingModule,
+        OverlayModule,
+        MatButtonModule,
+        MatProgressSpinnerModule,
+        MatFormFieldModule,
+        ClipboardModule,
+        MatChipsModule,
+        NgbModule,
+        FormsModule,
+        ReactiveFormsModule,
+        TimeagoModule.forChild({
+            clock: { provide: TimeagoClock, useClass: CustomClock },
+        }),
+    ],
 })
 export class DashboardModule {}

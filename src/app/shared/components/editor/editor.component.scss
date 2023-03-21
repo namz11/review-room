@@ -1,38 +1,38 @@
-@import "../../../../assets/scss/colors";
-@import "../../../../assets/scss/mixins";
+@import '../../../../assets/scss/colors';
+@import '../../../../assets/scss/mixins';
 
 .editor-container {
-  margin-top: 10px;
-  background: transparent;
+    margin-top: 10px;
+    background: transparent;
 }
 .ql-container.ql-snow {
-  height: 107px !important;
-  border: 1px solid $dark-gray;
-  background-color: $brand-white;
+    height: 107px !important;
+    border: 1px solid $dark-gray;
+    background-color: $brand-white;
 }
 .editor-footer {
-  height: 40px !important;
-  border: 1px solid $dark-gray;
-  border-top: none;
-  border-bottom-left-radius: 7px;
-  border-bottom-right-radius: 7px;
-  background-color: $brand-white;
+    height: 40px !important;
+    border: 1px solid $dark-gray;
+    border-top: none;
+    border-bottom-left-radius: 7px;
+    border-bottom-right-radius: 7px;
+    background-color: $brand-white;
 }
 .add-comment-container {
-  background: transparent;
+    background: transparent;
 
-  .ql-container.ql-snow {
-    height: 107px !important;
-    border: none;
-    border-bottom: 1px solid $light-gray;
-    background-color: $brand-white;
-  }
+    .ql-container.ql-snow {
+        height: 107px !important;
+        border: none;
+        border-bottom: 1px solid $light-gray;
+        background-color: $brand-white;
+    }
 
-  .editor-footer {
-    height: 40px !important;
-    border: none;
-    border-bottom-left-radius: 0px;
-    border-bottom-right-radius: 0px;
-    background-color: $brand-white;
-  }
+    .editor-footer {
+        height: 40px !important;
+        border: none;
+        border-bottom-left-radius: 0px;
+        border-bottom-right-radius: 0px;
+        background-color: $brand-white;
+    }
 }

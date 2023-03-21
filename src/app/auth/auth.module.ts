@@ -13,16 +13,16 @@ import { RegisterComponent } from '@app/auth/components/register/register.compon
 import { ForgotPassComponent } from '@app/auth/components/forgot-pass/forgot-pass.component';
 
 @NgModule({
-  declarations: [LoginComponent, RegisterComponent, ForgotPassComponent],
-  imports: [
-    CommonModule,
-    ReactiveFormsModule,
-    MatProgressSpinnerModule,
-    AuthRoutingModule,
-    MatFormFieldModule,
-    MatInputModule,
-    MatButtonModule,
-    MatCheckboxModule,
-  ],
+    declarations: [LoginComponent, RegisterComponent, ForgotPassComponent],
+    imports: [
+        CommonModule,
+        ReactiveFormsModule,
+        MatProgressSpinnerModule,
+        AuthRoutingModule,
+        MatFormFieldModule,
+        MatInputModule,
+        MatButtonModule,
+        MatCheckboxModule,
+    ],
 })
 export class AuthModule {}

@@ -11,20 +11,20 @@ import { MatDividerModule } from '@angular/material/divider';
 import { SharedModule } from '@shared/shared.module';
 import { LandingPageComponent } from './landing-page/landing-page.component';
 @NgModule({
-  declarations: [
-    HeaderComponent,
-    HeaderOnlyLayoutComponent,
-    MainLayoutComponent,
-    LandingPageComponent,
-  ],
-  imports: [
-    CommonModule,
-    LayoutRoutingModule,
+    declarations: [
+        HeaderComponent,
+        HeaderOnlyLayoutComponent,
+        MainLayoutComponent,
+        LandingPageComponent,
+    ],
+    imports: [
+        CommonModule,
+        LayoutRoutingModule,
 
-    MatDividerModule,
-    SharedModule,
-    MatMenuModule,
-  ],
-  exports: [],
+        MatDividerModule,
+        SharedModule,
+        MatMenuModule,
+    ],
+    exports: [],
 })
 export class LayoutModule {}

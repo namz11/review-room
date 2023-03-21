@@ -1,116 +1,120 @@
 <form [formGroup]="filesForm">
-  <label for="file-chooser-{{ id }}" class="image-label">
-    <ng-template #defaultLabel>
-      <span class="add-icon"> <i class="ph ph-plus-circle"></i> </span>
-    </ng-template>
+    <label for="file-chooser-{{ id }}" class="image-label">
+        <ng-template #defaultLabel>
+            <span class="add-icon"><i class="ph ph-plus-circle"></i></span>
+        </ng-template>
 
-    <ng-container [ngTemplateOutlet]="labelTemplateRef || defaultLabel">
-    </ng-container>
-  </label>
-  <input
-    id="file-chooser-{{ id }}"
-    type="file"
-    accept="image/bmp,image/gif,image/jpeg,image/png,image/svg+xml"
-    multiple=""
-    (change)="onFileChanged($event)"
-    hidden
-  />
+        <ng-container
+            [ngTemplateOutlet]="labelTemplateRef || defaultLabel"
+        ></ng-container>
+    </label>
+    <input
+        id="file-chooser-{{ id }}"
+        type="file"
+        accept="image/bmp,image/gif,image/jpeg,image/png,image/svg+xml"
+        multiple=""
+        (change)="onFileChanged($event)"
+        hidden
+    />
 </form>
 
 <ng-template #content let-modal>
-  <div [ngClass]="{ 'no-visibility': confirmDelete === true }">
-    <div class="modal-header">
-      <h5 class="modal-title">Uploading Images</h5>
-      <div class="close" role="button" (click)="handleClose()">
-        <span class="modal-close">&times;</span>
-      </div>
-    </div>
-    <div class="modal-body">
-      <div
-        *ngFor="let fileData of uploads; index as i"
-        class="d-flex flex-column"
-      >
-        <div
-          class="mb-2 file-item d-flex flex-row align-items-center justify-content-between"
-        >
-          <span
-            *ngIf="fileData.done < 100 || fileData.fileProcessed !== true"
-            class="upload-spinner"
-          >
-            <mat-spinner [diameter]="20"></mat-spinner>
-          </span>
-          <span
-            *ngIf="fileData.done == 100 && fileData.fileProcessed"
-            class="upload-done d-flex align-items-center"
-          >
-            <i class="ph-fill ph-check-circle"></i>
-          </span>
-          <span class="ms-2 flex-grow-1">
-            {{ fileData.file.name }}
-          </span>
-          <button
-            mat-flat-button
-            *ngIf="uploads.length > 1"
-            type="button"
-            class="close"
-            (click)="removeFile(fileData)"
-          >
-            <span>&times;</span>
-          </button>
+    <div [ngClass]="{ 'no-visibility': confirmDelete === true }">
+        <div class="modal-header">
+            <h5 class="modal-title">Uploading Images</h5>
+            <div class="close" role="button" (click)="handleClose()">
+                <span class="modal-close">&times;</span>
+            </div>
         </div>
-      </div>
+        <div class="modal-body">
+            <div
+                *ngFor="let fileData of uploads; index as i"
+                class="d-flex flex-column"
+            >
+                <div
+                    class="mb-2 file-item d-flex flex-row align-items-center justify-content-between"
+                >
+                    <span
+                        *ngIf="
+                            fileData.done < 100 ||
+                            fileData.fileProcessed !== true
+                        "
+                        class="upload-spinner"
+                    >
+                        <mat-spinner [diameter]="20"></mat-spinner>
+                    </span>
+                    <span
+                        *ngIf="fileData.done == 100 && fileData.fileProcessed"
+                        class="upload-done d-flex align-items-center"
+                    >
+                        <i class="ph-fill ph-check-circle"></i>
+                    </span>
+                    <span class="ms-2 flex-grow-1">
+                        {{ fileData.file.name }}
+                    </span>
+                    <button
+                        mat-flat-button
+                        *ngIf="uploads.length > 1"
+                        type="button"
+                        class="close"
+                        (click)="removeFile(fileData)"
+                    >
+                        <span>&times;</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button
+                mat-flat-button
+                *ngIf="showFooter"
+                type="button"
+                class="btn-primary"
+                (click)="createMarkup()"
+                [disabled]="!fileUploadDone"
+                ngbAutofocus
+            >
+                Create Markup
+            </button>
+            <button
+                mat-flat-button
+                *ngIf="!showFooter"
+                type="button"
+                class="btn-primary min-btn"
+                [disabled]="!fileUploadDone"
+                (click)="addPictures()"
+                ngbAutofocus
+            >
+                Add
+            </button>
+        </div>
     </div>
-    <div class="modal-footer">
-      <button
-        mat-flat-button
-        *ngIf="showFooter"
-        type="button"
-        class="btn-primary"
-        (click)="createMarkup()"
-        [disabled]="!fileUploadDone"
-        ngbAutofocus
-      >
-        Create Markup
-      </button>
-      <button
-        mat-flat-button
-        *ngIf="!showFooter"
-        type="button"
-        class="btn-primary min-btn"
-        [disabled]="!fileUploadDone"
-        (click)="addPictures()"
-        ngbAutofocus
-      >
-        Add
-      </button>
-    </div>
-  </div>
 
-  <div class="confirm-delete" *ngIf="confirmDelete === true">
-    <div
-      class="d-flex flex-column justify-content-center align-items-center"
-      [style.height]="'100%'"
-    >
-      <div *ngIf="isNewProject; else elseBlock">
-        <p>Are you sure you want to abandon the new project?</p>
-      </div>
-      <ng-template #elseBlock>
-        <p>Are you sure?</p>
-      </ng-template>
-      <div class="d-flex justify-content-center align-items-center">
-        <span
-          class="px-3 btn-stroked-primary d-flex align-items-center"
-          (click)="closeModal()"
+    <div class="confirm-delete" *ngIf="confirmDelete === true">
+        <div
+            class="d-flex flex-column justify-content-center align-items-center"
+            [style.height]="'100%'"
         >
-          Yes
-        </span>
-        <span
-          class="ms-3 px-3 btn-primary d-flex align-items-center"
-          (click)="handleConfirmClose()"
-        >
-          No
-        </span>
-      </div>
+            <div *ngIf="isNewProject; else elseBlock">
+                <p>Are you sure you want to abandon the new project?</p>
+            </div>
+            <ng-template #elseBlock>
+                <p>Are you sure?</p>
+            </ng-template>
+            <div class="d-flex justify-content-center align-items-center">
+                <span
+                    class="px-3 btn-stroked-primary d-flex align-items-center"
+                    (click)="closeModal()"
+                >
+                    Yes
+                </span>
+                <span
+                    class="ms-3 px-3 btn-primary d-flex align-items-center"
+                    (click)="handleConfirmClose()"
+                >
+                    No
+                </span>
+            </div>
+        </div>
     </div>
-  </div>
 </ng-template>

@@ -1,105 +1,123 @@
 <section class="mt-4 d-flex flex-column justify-content-between auth-wrapper">
-  <form [formGroup]="registerForm" class="w-100 pt-2">
-    <p class="h6 py-2">Create account</p>
-    <div class="form-group">
-      <mat-form-field
-        class="auth-form w-100"
-        [floatLabel]="floatLabelControl.value"
-      >
-        <mat-label>Name</mat-label>
-        <input
-          matInput
-          required
-          placeholder="Enter your full name"
-          formControlName="fullName"
-          [ngClass]="{ 'is-invalid': isSubmitted && _form.fullName.errors }"
-        />
-      </mat-form-field>
+    <form [formGroup]="registerForm" class="w-100 pt-2">
+        <p class="h6 py-2">Create account</p>
+        <div class="form-group">
+            <mat-form-field
+                class="auth-form w-100"
+                [floatLabel]="floatLabelControl.value"
+            >
+                <mat-label>Name</mat-label>
+                <input
+                    matInput
+                    required
+                    placeholder="Enter your full name"
+                    formControlName="fullName"
+                    [ngClass]="{
+                        'is-invalid': isSubmitted && _form.fullName.errors
+                    }"
+                />
+            </mat-form-field>
+        </div>
+        <div class="form-group">
+            <mat-form-field
+                class="auth-form w-100"
+                [floatLabel]="floatLabelControl.value"
+            >
+                <mat-label>Email</mat-label>
+                <input
+                    matInput
+                    required
+                    placeholder="Enter your email address"
+                    formControlName="email"
+                    [ngClass]="{
+                        'is-invalid': isSubmitted && _form.email.errors
+                    }"
+                />
+            </mat-form-field>
+        </div>
+        <div class="form-group">
+            <mat-form-field
+                class="auth-form w-100"
+                [floatLabel]="floatLabelControl.value"
+            >
+                <mat-label>Password</mat-label>
+                <input
+                    matInput
+                    required
+                    type="password"
+                    formControlName="password"
+                    placeholder="******"
+                    [ngClass]="{
+                        'is-invalid': isSubmitted && _form.password.errors
+                    }"
+                />
+            </mat-form-field>
+        </div>
+        <div class="form-group">
+            <mat-form-field
+                class="auth-form w-100"
+                [floatLabel]="floatLabelControl.value"
+            >
+                <mat-label>Confirm Password</mat-label>
+                <input
+                    matInput
+                    required
+                    type="password"
+                    formControlName="confirmPass"
+                    placeholder="******"
+                    [ngClass]="{
+                        'is-invalid': isSubmitted && _form.confirmPass.errors
+                    }"
+                />
+            </mat-form-field>
+        </div>
+        <div class="form-group">
+            <mat-checkbox
+                id="terms"
+                class="chkbx-primary"
+                formControlName="terms"
+            >
+                I agree to all the
+                <span class="font-brand-color">Terms & Conditions</span>
+            </mat-checkbox>
+        </div>
+        <div class="d-flex justify-content-start align-items-center">
+            <button
+                mat-flat-button
+                class="btn-primary"
+                [disabled]="isLoading"
+                (click)="register()"
+            >
+                Create account
+            </button>
+            <span *ngIf="isLoading" class="mx-3 brand-spinner">
+                <mat-spinner [diameter]="30" strokeWidth="1.5"></mat-spinner>
+            </span>
+        </div>
+    </form>
+    <div class="mt-2 flex-grow-1 form-message auth-message">
+        <div *ngIf="isSubmitted">
+            <span
+                *ngIf="
+                    _form?.email?.errors?.email === true ||
+                    _form?.email?.errors?.pattern
+                "
+            >
+                Email address is invalid.
+            </span>
+            <span *ngIf="_form?.confirmPass?.errors?.mustMatch">
+                Password must match!
+            </span>
+            <span *ngIf="_form?.terms?.errors">
+                You must accept to the terms.
+            </span>
+            <span *ngIf="msg2show !== ''">{{ msg2show }}</span>
+        </div>
     </div>
-    <div class="form-group">
-      <mat-form-field
-        class="auth-form w-100"
-        [floatLabel]="floatLabelControl.value"
-      >
-        <mat-label>Email</mat-label>
-        <input
-          matInput
-          required
-          placeholder="Enter your email address"
-          formControlName="email"
-          [ngClass]="{ 'is-invalid': isSubmitted && _form.email.errors }"
-        />
-      </mat-form-field>
+    <div class="my-3 font-light-gray" [style.fontSize.px]="12">
+        Already have an account?
+        <span id="login" [routerLink]="['/auth/signin']" class="ps-1">
+            Log In
+        </span>
     </div>
-    <div class="form-group">
-      <mat-form-field
-        class="auth-form w-100"
-        [floatLabel]="floatLabelControl.value"
-      >
-        <mat-label>Password</mat-label>
-        <input
-          matInput
-          required
-          type="password"
-          formControlName="password"
-          placeholder="******"
-          [ngClass]="{ 'is-invalid': isSubmitted && _form.password.errors }"
-        />
-      </mat-form-field>
-    </div>
-    <div class="form-group">
-      <mat-form-field
-        class="auth-form w-100"
-        [floatLabel]="floatLabelControl.value"
-      >
-        <mat-label>Confirm Password</mat-label>
-        <input
-          matInput
-          required
-          type="password"
-          formControlName="confirmPass"
-          placeholder="******"
-          [ngClass]="{ 'is-invalid': isSubmitted && _form.confirmPass.errors }"
-        />
-      </mat-form-field>
-    </div>
-    <div class="form-group">
-      <mat-checkbox id="terms" class="chkbx-primary" formControlName="terms">
-        I agree to all the
-        <span class="font-brand-color">Terms & Conditions</span>
-      </mat-checkbox>
-    </div>
-    <div class="d-flex justify-content-start align-items-center">
-      <button
-        mat-flat-button
-        class="btn-primary"
-        [disabled]="isLoading"
-        (click)="register()"
-      >
-        Create account
-      </button>
-      <span *ngIf="isLoading" class="mx-3 brand-spinner">
-        <mat-spinner [diameter]="30" strokeWidth="1.5"></mat-spinner>
-      </span>
-    </div>
-  </form>
-  <div class="mt-2 flex-grow-1 form-message auth-message">
-    <div *ngIf="isSubmitted">
-      <span
-        *ngIf="
-          _form?.email?.errors?.email === true || _form?.email?.errors?.pattern
-        "
-        >Email address is invalid.</span
-      >
-      <span *ngIf="_form?.confirmPass?.errors?.mustMatch"
-        >Password must match!</span
-      >
-      <span *ngIf="_form?.terms?.errors">You must accept to the terms.</span>
-      <span *ngIf="msg2show !== ''">{{ msg2show }}</span>
-    </div>
-  </div>
-  <div class="my-3 font-light-gray" [style.fontSize.px]="12">
-    Already have an account?
-    <span id="login" [routerLink]="['/auth/signin']" class="ps-1">Log In</span>
-  </div>
 </section>
