@@ -8,7 +8,7 @@
         "watch": "ng build --watch --configuration development",
         "test": "ng test --watch=false --browsers ChromeHeadless",
         "lint": "npx eslint --cache --quiet --fix",
-        "format": "npx prettier --write",
+        "format": "npx prettier --write .",
         "prepare": "husky install"
     },
     "lint-staged": {
@@ -37,6 +37,7 @@
         "@popperjs/core": "^2.10.2",
         "angular-resize-event": "^3.2.0",
         "bootstrap": "^5.2.0",
+        "eslint-config-airbnb-typescript": "^17.0.0",
         "lodash-es": "^4.17.21",
         "ngx-timeago": "^2.0.0",
         "rxjs": "~7.5.0",
