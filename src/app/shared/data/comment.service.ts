@@ -41,7 +41,6 @@ export class CommentService {
     }
 
     changeStatus(key: string, set: number): Promise<void> {
-        const updatedAt = firebase.default.database.ServerValue.TIMESTAMP;
         const uid = generalUtil.getCurrentUserKey();
         return this.commentsRef.update(key, {
             resolvedBy: uid,

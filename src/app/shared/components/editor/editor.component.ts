@@ -103,11 +103,10 @@ export class EditorComponent implements OnInit, OnDestroy, AfterViewInit {
         const key = toString(this.data.key).trim();
         this.commentService
             .updateContent(key, content)
-            .then((res: any) => {
+            .then(() => {
                 this.cancelPin(content);
             })
-            .catch((err: any) => {
-                console.log(err);
+            .catch(() => {
                 this.snackBar.snackbarError('Unable to save!');
             });
         // updating new tags for comment, parent comment & project

@@ -48,7 +48,7 @@
                     <div class="hover-overlay p-1">
                         <span
                             class="hover-icons"
-                            (click)="confirmDeleteImg(img, i)"
+                            (click)="confirmDeleteImg(img)"
                         >
                             <i class="ph ph-trash-simple"></i>
                         </span>
@@ -66,7 +66,7 @@
                             [id]="'replaceImg' + i"
                             type="file"
                             accept="image/bmp,image/gif,image/jpeg,image/png,image/svg+xml"
-                            (change)="replaceImg($event, img, i)"
+                            (change)="replaceImg($event, img)"
                             hidden
                         />
                     </div>
@@ -131,7 +131,7 @@
                         ></i>
                     </a>
                 </div>
-                <div class="canvas-container" (resized)="onResized($event)">
+                <div class="canvas-container" (resized)="onResized()">
                     <app-quill-editor
                         [data]="editorData"
                         *ngIf="showEditor || showCreateEditor"
@@ -692,8 +692,7 @@
                                             (selectionChanged)="
                                                 closeEditChildComment(
                                                     $event,
-                                                    child,
-                                                    i
+                                                    child
                                                 )
                                             "
                                         ></app-editor>
@@ -716,10 +715,7 @@
                                                 "
                                                 class="comment-box-action"
                                                 (click)="
-                                                    openEditChildComment(
-                                                        child,
-                                                        i
-                                                    )
+                                                    openEditChildComment(child)
                                                 "
                                             >
                                                 <i

@@ -125,8 +125,7 @@ export class QuillEditorComponent implements OnInit, OnDestroy, AfterViewInit {
                 this.commentService.updateNewTags(res.key, newTags);
                 this.projectService.updateNewTags(this.project.key, newTags);
             })
-            .catch((err: any) => {
-                console.log(err);
+            .catch(() => {
                 this.snackBar.snackbarError('Unable to save comment');
             });
         this.projectService.updateCommentCount(comment.projectKey, 1);
@@ -137,11 +136,10 @@ export class QuillEditorComponent implements OnInit, OnDestroy, AfterViewInit {
         const key = toString(this.data.key).trim();
         this.commentService
             .updateContent(key, content)
-            .then((res: any) => {
+            .then(() => {
                 this.cancelPin();
             })
-            .catch((err: any) => {
-                console.log(err);
+            .catch(() => {
                 this.snackBar.snackbarError('Unable to save comment');
             });
         // updating new tags for comment, parent comment & project

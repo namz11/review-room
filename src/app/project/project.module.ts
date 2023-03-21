@@ -24,7 +24,7 @@ import { ProjectComponent } from './components/project/project.component';
 // ticks every 1min
 // TODO remove code redundancy
 export class CustomClock extends TimeagoClock {
-    tick(then: number): Observable<number> {
+    tick(): Observable<number> {
         return interval(60000);
     }
 }

@@ -1,4 +1,4 @@
-import { Picture, PictureViewModel } from './file.model';
+import { PictureViewModel } from './file.model';
 
 export class Project {
     public name = '';

@@ -154,7 +154,7 @@ export class AuthService {
     // TODO add user page so that user an request for this
     emailVerification() {
         this.afAuth.currentUser.then((user) => {
-            user?.sendEmailVerification().then((res) => {
+            user?.sendEmailVerification().then(() => {
                 this.snackBar.snackbarSuccess(
                     'Verification email sent, check your inbox'
                 );

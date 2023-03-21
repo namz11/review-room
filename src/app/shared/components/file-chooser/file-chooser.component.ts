@@ -33,7 +33,7 @@ export class FileChooserComponent implements OnInit {
     @Input() projectKey = '';
     @Input() showFooter = true;
     @Input() addAsActive = true;
-    @Input('labelTemplateRef')
+    @Input()
     labelTemplateRef!: TemplateRef<any>;
     @ViewChild('content')
     private content!: TemplateRef<any>;
@@ -78,7 +78,7 @@ export class FileChooserComponent implements OnInit {
     }
     ngOnInit(): void {
         this.retrieveFiles();
-        this.filesForm.valueChanges.subscribe((data) => {
+        this.filesForm.valueChanges.subscribe(() => {
             this.myModal();
         });
     }
@@ -199,8 +199,7 @@ export class FileChooserComponent implements OnInit {
             .then((res: any) => {
                 this.projectKey = res.key;
             })
-            .catch((err: any) => {
-                console.log(err);
+            .catch(() => {
                 this.snackBar.snackbarError('Error while creating project.');
             });
     }
@@ -230,8 +229,7 @@ export class FileChooserComponent implements OnInit {
                                     percentage ? percentage : 0
                                 );
                             },
-                            (error) => {
-                                console.log(error);
+                            () => {
                                 this.snackBar.snackbarError(
                                     'Error while uploading file.'
                                 );
@@ -267,8 +265,7 @@ export class FileChooserComponent implements OnInit {
                 (percentage) => {
                     file2upload.done = Math.round(percentage ? percentage : 0);
                 },
-                (error) => {
-                    console.log(error);
+                () => {
                     this.snackBar.snackbarError('Error while uploading file.');
                 }
             );
@@ -307,17 +304,17 @@ export class FileChooserComponent implements OnInit {
                                 firebase.default.database.ServerValue.TIMESTAMP;
                             fileUpload.data.updatedAt =
                                 firebase.default.database.ServerValue.TIMESTAMP;
-                            this.uploadsRef.push(fileUpload.data).then((x) => {
-                                const replaceData = {
-                                    oldKey: toString(allowReplace?.replaceKey),
-                                    newKey: toString(x.key),
-                                    newHeight: toNumber(data.height),
-                                    newWidth: toNumber(data.width),
-                                    comments2replace: cloneDeep(
-                                        allowReplace?.comments2replace
-                                    ),
-                                    oldImg: cloneDeep(allowReplace?.oldImg),
-                                };
+                            this.uploadsRef.push(fileUpload.data).then(() => {
+                                // const replaceData = {
+                                //     oldKey: toString(allowReplace?.replaceKey),
+                                //     newKey: toString(x.key),
+                                //     newHeight: toNumber(data.height),
+                                //     newWidth: toNumber(data.width),
+                                //     comments2replace: cloneDeep(
+                                //         allowReplace?.comments2replace
+                                //     ),
+                                //     oldImg: cloneDeep(allowReplace?.oldImg),
+                                // };
                             });
                         } else {
                             if (data.isActive) {

@@ -1,5 +1,3 @@
-/* eslint-disable no-underscore-dangle */
-/* eslint-disable @typescript-eslint/dot-notation */
 import {
     Component,
     OnInit,
@@ -190,6 +188,7 @@ export class ProjectComponent implements OnInit, AfterViewInit {
         });
     }
     ngAfterViewInit(): void {
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
         const open$ = fromEvent(this.canvasDiv.nativeElement, 'click')
             .pipe(
                 filter(
@@ -242,8 +241,7 @@ export class ProjectComponent implements OnInit, AfterViewInit {
                             (this.projectData.uploads[resp.index].isLoading =
                                 false)
                     )
-                    .catch((err) => {
-                        console.log(err);
+                    .catch(() => {
                         this.snackBar.snackbarError(
                             'Error while updating name!'
                         );
@@ -335,7 +333,7 @@ export class ProjectComponent implements OnInit, AfterViewInit {
                 ).filter((x: any) => toString(x.parentKey).trim() === '');
                 this.projectData.pinCount = parentCommentsOnly.length;
                 setTimeout(() => {
-                    this.onResized(null);
+                    this.onResized();
                 }, 100);
 
                 this.panelData.files.map((file: any) => {
@@ -549,7 +547,7 @@ export class ProjectComponent implements OnInit, AfterViewInit {
                 (x: any) => x.imageKey === picture.key && x.status !== 0
             );
         setTimeout(() => {
-            this.onResized(null);
+            this.onResized();
         }, 100);
     }
     nextImg(): void {
@@ -564,7 +562,7 @@ export class ProjectComponent implements OnInit, AfterViewInit {
                         x.status !== 0
                 );
             setTimeout(() => {
-                this.onResized(null);
+                this.onResized();
             }, 100);
         }
     }
@@ -580,7 +578,7 @@ export class ProjectComponent implements OnInit, AfterViewInit {
                         x.status !== 0
                 );
             setTimeout(() => {
-                this.onResized(null);
+                this.onResized();
             }, 100);
         }
     }
@@ -606,7 +604,7 @@ export class ProjectComponent implements OnInit, AfterViewInit {
         this.uploadNameSubject.next({ key, val, index });
         return true;
     }
-    confirmDeleteImg(picture: any, index: number): void {
+    confirmDeleteImg(picture: any): void {
         this.projectData.deleteImg = picture;
         this.modalService.open(this.content, {
             centered: true,
@@ -633,7 +631,7 @@ export class ProjectComponent implements OnInit, AfterViewInit {
     closeConfirmModal() {
         this.modalService.dismissAll(this.content);
     }
-    replaceImg(event: any, picture: any, index: number): void {
+    replaceImg(event: any, picture: any): void {
         const newFiles = event.target.files;
         if (newFiles.length === 0) {
             return;
@@ -686,8 +684,7 @@ export class ProjectComponent implements OnInit, AfterViewInit {
                                 percentage ? percentage : 0
                             );
                         },
-                        (error) => {
-                            console.log(error);
+                        () => {
                             this.snackBar.snackbarError(
                                 'Error while uploading file.'
                             );
@@ -800,7 +797,7 @@ export class ProjectComponent implements OnInit, AfterViewInit {
     openEditComment(): void {
         this.panelData.isEdit = true;
     }
-    openEditChildComment(child2edit: any, index: number): void {
+    openEditChildComment(child2edit: any): void {
         child2edit.isEdit = true;
     }
     closeEditComment(event: any): void {
@@ -809,7 +806,7 @@ export class ProjectComponent implements OnInit, AfterViewInit {
             this.panelData.comment2edit.content = event.content;
         }
     }
-    closeEditChildComment(event: any, child2edit: any, index: number): void {
+    closeEditChildComment(event: any, child2edit: any): void {
         child2edit.isEdit = event.close;
         if (event.content) {
             child2edit.content = event.content;
@@ -860,7 +857,7 @@ export class ProjectComponent implements OnInit, AfterViewInit {
     //#endregion
 
     //#region canvas area
-    onResized(e: any): void {
+    onResized(): void {
         this.hMultipler = this.canvasDiv.nativeElement.height;
         this.wMultipler = this.canvasDiv.nativeElement.width;
     }
@@ -946,7 +943,7 @@ export class ProjectComponent implements OnInit, AfterViewInit {
                 this.isLoading = false;
                 this.shareSubmitted = false;
             })
-            .catch((err) => {
+            .catch(() => {
                 this.isLoading = false;
                 this.shareSubmitted = false;
                 this.shareError = true;
@@ -971,7 +968,6 @@ export class ProjectComponent implements OnInit, AfterViewInit {
     //       }
     //     );
     // }
-    // eslint-disable-next-line @typescript-eslint/member-ordering
     get _shareForm(): any {
         return this.shareForm.controls;
     }
@@ -1002,7 +998,6 @@ export class ProjectComponent implements OnInit, AfterViewInit {
     //#endregion
 
     //#region guest login
-    // eslint-disable-next-line @typescript-eslint/member-ordering
     get _guestForm(): any {
         return this.guestForm.controls;
     }

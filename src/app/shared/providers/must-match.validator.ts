@@ -1,5 +1,3 @@
-/* eslint-disable @typescript-eslint/naming-convention */
-/* eslint-disable prefer-arrow/prefer-arrow-functions */
 import { UntypedFormGroup } from '@angular/forms';
 
 export function MustMatch(controlName: string, matchingControlName: string) {

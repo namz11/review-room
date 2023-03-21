@@ -110,7 +110,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
                 this.projectService
                     .updateName(resp.key, resp.val)
                     .then(() => (this.projects[resp.index].isLoading = false))
-                    .catch((err) => {
+                    .catch(() => {
                         this.snackBar.snackbarError(
                             'Unable to update project name!'
                         );
@@ -211,7 +211,6 @@ export class DashboardComponent implements OnInit, AfterViewInit {
             const updatedTags = projectUtil.updateNewTag(project.newTags);
             this.projectService.updateNewTags(project.key, updatedTags);
         } else {
-            // eslint-disable-next-line @typescript-eslint/quotes
             this.snackBar.snackbarWarning("Can't find project. Try again!");
         }
     }
@@ -262,7 +261,6 @@ export class DashboardComponent implements OnInit, AfterViewInit {
     }
 
     //#region share
-    // eslint-disable-next-line @typescript-eslint/member-ordering
     get _shareForm(): any {
         return this.shareForm.controls;
     }
@@ -324,7 +322,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
                 this.isLoading = false;
                 this.shareSubmitted = false;
             })
-            .catch((err) => {
+            .catch(() => {
                 this.isLoading = false;
                 this.shareSubmitted = false;
                 this.shareError = true;

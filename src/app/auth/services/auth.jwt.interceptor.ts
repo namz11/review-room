@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Injectable } from '@angular/core';
 import {
     HttpRequest,
@@ -23,7 +22,6 @@ export class JwtInterceptor implements HttpInterceptor {
         if (isLoggedIn) {
             request = request.clone({
                 setHeaders: {
-                    // eslint-disable-next-line @typescript-eslint/naming-convention
                     Authorization: `Bearer ${currentUser.token}`,
                 },
             });

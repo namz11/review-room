@@ -17,7 +17,7 @@ import { DashboardComponent } from '@app/dashboard/components/dashboard/dashboar
 
 // ticks every 1min
 export class CustomClock extends TimeagoClock {
-    tick(then: number): Observable<number> {
+    tick(): Observable<number> {
         return interval(60000);
     }
 }

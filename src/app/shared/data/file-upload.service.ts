@@ -111,7 +111,9 @@ export class FileUploadService {
             .then(() => {
                 this.deleteFileStorage(name);
             })
-            .catch((error) => console.log(error));
+            .catch(() => {
+                // error msg
+            });
     }
 
     saveFileData(data: Picture): void {
