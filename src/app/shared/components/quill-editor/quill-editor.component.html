@@ -1,30 +1,33 @@
 <div
-  class="quill-container canvas-editor"
-  [style.top.px]="data.top"
-  [style.left.px]="data.left"
+    class="quill-container canvas-editor"
+    [style.top.px]="data.top"
+    [style.left.px]="data.left"
 >
-  <div id="{{ id }}"></div>
-  <div class="quill-footer px-3 d-flex justify-content-end align-items-center">
-    <span
-      class="px-2 btn-secondary text-uppercase mini-btn d-flex align-items-center"
-      (click)="cancelPin()"
-      >cancel</span
+    <div id="{{ id }}"></div>
+    <div
+        class="quill-footer px-3 d-flex justify-content-end align-items-center"
     >
-    <button
-      mat-flat-button
-      *ngIf="isNew"
-      class="ms-2 btn-primary text-uppercase mini-btn d-flex align-items-center"
-      (click)="createPin()"
-    >
-      post
-    </button>
-    <button
-      mat-flat-button
-      *ngIf="!isNew && data.createdBy == currentUserKey"
-      class="ms-2 btn-primary text-uppercase mini-btn d-flex align-items-center"
-      (click)="savePin()"
-    >
-      save
-    </button>
-  </div>
+        <span
+            class="px-2 btn-secondary text-uppercase mini-btn d-flex align-items-center"
+            (click)="cancelPin()"
+        >
+            cancel
+        </span>
+        <button
+            mat-flat-button
+            *ngIf="isNew"
+            class="ms-2 btn-primary text-uppercase mini-btn d-flex align-items-center"
+            (click)="createPin()"
+        >
+            post
+        </button>
+        <button
+            mat-flat-button
+            *ngIf="!isNew && data.createdBy == currentUserKey"
+            class="ms-2 btn-primary text-uppercase mini-btn d-flex align-items-center"
+            (click)="savePin()"
+        >
+            save
+        </button>
+    </div>
 </div>

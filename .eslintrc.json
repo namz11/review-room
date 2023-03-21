@@ -1,0 +1,69 @@
+{
+    "root": true,
+    "ignorePatterns": ["projects/**/*"],
+    "settings": {
+        "import/resolver": {
+            "typescript": {
+                // "alwaysTryTypes": true
+            }
+        }
+    },
+    "overrides": [
+        {
+            "files": ["*.ts"],
+            "parserOptions": {
+                "project": ["tsconfig.json"],
+                "createDefaultProgram": true
+            },
+            "extends": [
+                "plugin:@angular-eslint/recommended",
+                "plugin:@angular-eslint/template/process-inline-templates",
+                "plugin:import/recommended",
+                // Settings for Prettier
+                "prettier"
+
+                // AirBnB Styleguide rules
+                // "airbnb-typescript/base",
+
+                // Other popular style guides
+                // "eslint:recommended",
+                // "plugin:@typescript-eslint/recommended",
+                // "plugin:@typescript-eslint/recommended-requiring-type-checking"
+            ],
+            "rules": {
+                "@angular-eslint/directive-selector": [
+                    "error",
+                    {
+                        "type": "attribute",
+                        "prefix": "app",
+                        "style": "camelCase"
+                    }
+                ],
+                "@angular-eslint/component-selector": [
+                    "error",
+                    {
+                        "type": "element",
+                        "prefix": "app",
+                        "style": "kebab-case"
+                    }
+                ],
+                "@angular-eslint/no-empty-lifecycle-method": "off",
+                "no-unused-vars": "off",
+                "@typescript-eslint/no-unused-vars": "error",
+                "import/no-unresolved": "off",
+                "import/prefer-default-export": "off",
+                "no-console": ["error", { "allow": ["warn", "error"] }]
+            }
+        },
+        {
+            "files": ["*.html"],
+            "extends": [
+                "plugin:@angular-eslint/template/recommended",
+                "prettier"
+            ],
+            "rules": {
+                "@angular-eslint/template/eqeqeq": "off"
+            }
+        }
+    ]
+}

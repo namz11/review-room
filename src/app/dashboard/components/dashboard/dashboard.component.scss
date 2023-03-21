@@ -1,90 +1,90 @@
-@import "../../../../assets/scss/colors";
-@import "../../../../assets/scss/mixins";
+@import '../../../../assets/scss/colors';
+@import '../../../../assets/scss/mixins';
 
 .card-container {
-  display: -webkit-box;
-  display: -moz-box;
-  display: -ms-flexbox;
-  display: -webkit-flex;
-  display: flex;
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
 
-  -webkit-box-orient: horizontal;
-  -moz-box-orient: horizontal;
-  box-orient: horizontal;
-  flex-direction: row;
+    -webkit-box-orient: horizontal;
+    -moz-box-orient: horizontal;
+    box-orient: horizontal;
+    flex-direction: row;
 
-  -webkit-box-pack: center;
-  -moz-box-pack: center;
-  box-pack: center;
+    -webkit-box-pack: center;
+    -moz-box-pack: center;
+    box-pack: center;
 
-  -webkit-box-align: center;
-  -moz-box-align: center;
-  box-align: center;
-  align-items: center;
+    -webkit-box-align: center;
+    -moz-box-align: center;
+    box-align: center;
+    align-items: center;
 }
 
 .project-card {
-  @include border-radius;
-  background-color: $light-gray;
-  box-shadow: 0px 2px 6px -5px #000000fa;
-  cursor: pointer;
-  height: 100%;
-
-  .share-wrapper {
-    display: none;
-  }
-
-  &:hover,
-  &:active,
-  &:focus {
-    border: 1px solid $brand-color;
-    box-shadow: 0px 0px 16px -2px #5f545482;
+    @include border-radius;
+    background-color: $light-gray;
+    box-shadow: 0px 2px 6px -5px #000000fa;
+    cursor: pointer;
+    height: 100%;
 
     .share-wrapper {
-      display: flex;
+        display: none;
     }
-  }
+
+    &:hover,
+    &:active,
+    &:focus {
+        border: 1px solid $brand-color;
+        box-shadow: 0px 0px 16px -2px #5f545482;
+
+        .share-wrapper {
+            display: flex;
+        }
+    }
 }
 .top {
-  height: calc(100% - 114px);
-  width: 100%;
+    height: calc(100% - 114px);
+    width: 100%;
 }
 .image {
-  max-width: 100%;
-  max-height: 100%;
-  height: auto;
+    max-width: 100%;
+    max-height: 100%;
+    height: auto;
 }
 .content {
-  border-bottom-left-radius: 7px;
-  border-bottom-right-radius: 7px;
-  background-color: $brand-white;
-  width: 100%;
-  cursor: auto;
+    border-bottom-left-radius: 7px;
+    border-bottom-right-radius: 7px;
+    background-color: $brand-white;
+    width: 100%;
+    cursor: auto;
 }
 
 .my-cont {
-  height: 250px;
-  .overlay-container {
-    display: none;
-  }
-  &:hover {
+    height: 250px;
     .overlay-container {
-      display: block;
+        display: none;
     }
-    .image {
-      display: none;
+    &:hover {
+        .overlay-container {
+            display: block;
+        }
+        .image {
+            display: none;
+        }
     }
-  }
 }
 .overlay-container {
-  border-top-left-radius: 7px;
-  border-top-right-radius: 7px;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.5);
+    border-top-left-radius: 7px;
+    border-top-right-radius: 7px;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
 }
 .overlay {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
 }

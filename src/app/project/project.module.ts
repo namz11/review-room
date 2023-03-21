@@ -24,34 +24,34 @@ import { ProjectComponent } from './components/project/project.component';
 // ticks every 1min
 // TODO remove code redundancy
 export class CustomClock extends TimeagoClock {
-  tick(then: number): Observable<number> {
-    return interval(60000);
-  }
+    tick(): Observable<number> {
+        return interval(60000);
+    }
 }
 @NgModule({
-  declarations: [ProjectComponent],
-  imports: [
-    CommonModule,
-    ProjectRoutingModule,
-    SharedModule,
-    AngularResizeEventModule,
-    MatTabsModule,
-    NgbModule,
-    MatDividerModule,
-    MatSlideToggleModule,
-    MatButtonToggleModule,
-    FormsModule,
-    ReactiveFormsModule,
-    MatFormFieldModule,
-    MatProgressSpinnerModule,
-    MatButtonModule,
-    MatChipsModule,
-    ClipboardModule,
-    MatInputModule,
-    MatCheckboxModule,
-    TimeagoModule.forChild({
-      clock: { provide: TimeagoClock, useClass: CustomClock },
-    }),
-  ],
+    declarations: [ProjectComponent],
+    imports: [
+        CommonModule,
+        ProjectRoutingModule,
+        SharedModule,
+        AngularResizeEventModule,
+        MatTabsModule,
+        NgbModule,
+        MatDividerModule,
+        MatSlideToggleModule,
+        MatButtonToggleModule,
+        FormsModule,
+        ReactiveFormsModule,
+        MatFormFieldModule,
+        MatProgressSpinnerModule,
+        MatButtonModule,
+        MatChipsModule,
+        ClipboardModule,
+        MatInputModule,
+        MatCheckboxModule,
+        TimeagoModule.forChild({
+            clock: { provide: TimeagoClock, useClass: CustomClock },
+        }),
+    ],
 })
 export class ProjectModule {}

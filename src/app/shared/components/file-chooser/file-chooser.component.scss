@@ -1,19 +1,19 @@
-@import "../../../../assets/scss/colors";
-@import "../../../../assets/scss/mixins";
+@import '../../../../assets/scss/colors';
+@import '../../../../assets/scss/mixins';
 
 .image-label {
-  margin: 0px;
-  cursor: pointer;
+    margin: 0px;
+    cursor: pointer;
 }
 .file-item {
-  border: 1px solid $light-gray;
-  @include border-radius;
-  padding: 10px;
+    border: 1px solid $light-gray;
+    @include border-radius;
+    padding: 10px;
 }
 .upload-done {
-  font-size: 22px;
-  color: $green;
+    font-size: 22px;
+    color: $green;
 }
 .add-icon {
-  color: $brand-color;
+    color: $brand-color;
 }

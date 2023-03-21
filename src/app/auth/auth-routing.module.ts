@@ -5,14 +5,14 @@ import { RegisterComponent } from './components/register/register.component';
 import { ForgotPassComponent } from './components/forgot-pass/forgot-pass.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: 'signin', pathMatch: 'full' },
-  { path: 'signin', component: LoginComponent },
-  { path: 'signup', component: RegisterComponent },
-  { path: 'forgot', component: ForgotPassComponent },
+    { path: '', redirectTo: 'signin', pathMatch: 'full' },
+    { path: 'signin', component: LoginComponent },
+    { path: 'signup', component: RegisterComponent },
+    { path: 'forgot', component: ForgotPassComponent },
 ];
 
 @NgModule({
-  imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule],
+    imports: [RouterModule.forChild(routes)],
+    exports: [RouterModule],
 })
 export class AuthRoutingModule {}
