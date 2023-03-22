@@ -15,8 +15,11 @@
             "prefix": "app",
             "architect": {
                 "build": {
-                    "builder": "@angular-devkit/build-angular:browser",
+                    "builder": "@angular-builders/custom-webpack:browser",
                     "options": {
+                        "customWebpackConfig": {
+                            "path": "src/webpack.config.ts"
+                        },
                         "outputPath": "dist/review-room",
                         "index": "src/index.html",
                         "main": "src/main.ts",
@@ -35,13 +38,13 @@
                             "budgets": [
                                 {
                                     "type": "initial",
-                                    "maximumWarning": "500kb",
-                                    "maximumError": "1mb"
+                                    "maximumWarning": "2mb",
+                                    "maximumError": "4mb"
                                 },
                                 {
                                     "type": "anyComponentStyle",
-                                    "maximumWarning": "2kb",
-                                    "maximumError": "4kb"
+                                    "maximumWarning": "4kb",
+                                    "maximumError": "8kb"
                                 }
                             ],
                             "fileReplacements": [
@@ -64,7 +67,7 @@
                     "defaultConfiguration": "production"
                 },
                 "serve": {
-                    "builder": "@angular-devkit/build-angular:dev-server",
+                    "builder": "@angular-builders/custom-webpack:dev-server",
                     "configurations": {
                         "production": {
                             "browserTarget": "review-room:build:production"
