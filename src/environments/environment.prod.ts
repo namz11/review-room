@@ -11,5 +11,6 @@ export const environment = {
         storageBucket: process.env['RR_FIREBASE_STORAGE_BUCKET'],
         messagingSenderId: process.env['RR_FIREBASE_SENDER_ID'],
         appId: process.env['RR_FIREBASE_APP_ID'],
+        measurementId: process.env['RR_FIREBASE_MEASUREMENT_ID'],
     },
 };
