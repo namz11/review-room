@@ -11,6 +11,7 @@ import { AngularFireDatabaseModule } from '@angular/fire/compat/database';
 import { AngularFireAuthModule } from '@angular/fire/compat/auth';
 import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
 import { AngularFireStorageModule } from '@angular/fire/compat/storage';
+import { AngularFireAnalyticsModule } from '@angular/fire/compat/analytics';
 
 // bootstarp
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
@@ -37,6 +38,7 @@ import { LayoutModule } from '@app/layout/layout.module';
         TimeagoModule.forRoot(),
 
         AngularFireModule.initializeApp(environment.firebase),
+        AngularFireAnalyticsModule,
         AngularFireDatabaseModule,
         AngularFireAuthModule,
         AngularFirestoreModule,
