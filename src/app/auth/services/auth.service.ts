@@ -30,6 +30,9 @@ export class AuthService {
 		logged in and setting up null when logged out */
         this.afAuth.authState.subscribe((user) => {
             if (user) {
+                // setup user for FreshChat
+                this.setupFreshChatUser(user);
+
                 if (user?.emailVerified) {
                     this.userData = user;
                     localStorage.setItem('user', JSON.stringify(this.userData));
@@ -45,6 +48,28 @@ export class AuthService {
         this.retrieveUsers();
     }
 
+    setupFreshChatUser(userInfo: any): void {
+        (window as any).fcWidget.user.isExists().then(
+            function (data: any) {
+                if (data.data) {
+                    (window as any).fcWidget.user.update({
+                        firstName: `${userInfo.displayName}`,
+                        lastName: `${userInfo.uid}`,
+                        email: `${userInfo.email}`,
+                    });
+                } else {
+                    (window as any).fcWidget.user.create({
+                        firstName: `${userInfo.displayName}`,
+                        lastName: `${userInfo.uid}`,
+                        email: `${userInfo.email}`,
+                    });
+                }
+            },
+            function () {
+                console.error('FC --- Error fetching user');
+            }
+        );
+    }
     // Returns true when user is logged in
     get isLoggedIn(): boolean {
         const user =

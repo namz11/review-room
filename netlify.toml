@@ -1,0 +1,14 @@
+[context.production]
+  command = "npm run build"
+
+[context.deploy-preview]
+  command = "ng build --configuration staging"
+
+[context.branch-deploy]
+  command = "ng build --configuration staging"
+
+[context.dev]
+  command = "ng build --configuration staging"
+
+[context.development]
+  command = "ng build --configuration staging"
