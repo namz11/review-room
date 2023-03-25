@@ -5,6 +5,7 @@ import {
     AfterViewInit,
     ElementRef,
     TemplateRef,
+    OnDestroy,
 } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import {
@@ -55,7 +56,7 @@ import { generalUtil, projectUtil } from '@shared/utils/utils';
     templateUrl: './project.component.html',
     styleUrls: ['./project.component.scss'],
 })
-export class ProjectComponent implements OnInit, AfterViewInit {
+export class ProjectComponent implements OnInit, AfterViewInit, OnDestroy {
     @ViewChild(FileChooserComponent, { static: true })
     public fileChooserComponent!: FileChooserComponent;
     @ViewChild('canvasDiv')
@@ -138,6 +139,11 @@ export class ProjectComponent implements OnInit, AfterViewInit {
     projectUsers: any = [];
 
     private uploadNameSubject: Subject<any> = new Subject();
+    private open$: any;
+    private projects$: any;
+    private users$: any;
+    private uploads$: any;
+    private comments$: any;
 
     constructor(
         private readonly route: ActivatedRoute,
@@ -187,9 +193,17 @@ export class ProjectComponent implements OnInit, AfterViewInit {
             uploadFiles: this.fileChooserComponent?.createFormGroup(),
         });
     }
+    ngOnDestroy(): void {
+        this.uploadNameSubject.unsubscribe();
+        this.open$.unsubscribe();
+        this.users$.unsubscribe();
+        this.uploads$.unsubscribe();
+        this.comments$.unsubscribe();
+        this.projects$.unsubscribe();
+    }
     ngAfterViewInit(): void {
         // eslint-disable-next-line @typescript-eslint/no-unused-vars
-        const open$ = fromEvent(this.canvasDiv.nativeElement, 'click')
+        this.open$ = fromEvent(this.canvasDiv.nativeElement, 'click')
             .pipe(
                 filter(
                     (event: any) =>
@@ -251,7 +265,7 @@ export class ProjectComponent implements OnInit, AfterViewInit {
 
     //#region queries
     retrieveFiles(): void {
-        this.uploadService
+        this.uploads$ = this.uploadService
             .getAll()
             .snapshotChanges()
             .pipe(
@@ -286,7 +300,7 @@ export class ProjectComponent implements OnInit, AfterViewInit {
             });
     }
     retrieveComments(): void {
-        this.commentService
+        this.comments$ = this.commentService
             .getAll()
             .snapshotChanges()
             .pipe(
@@ -353,7 +367,7 @@ export class ProjectComponent implements OnInit, AfterViewInit {
             });
     }
     retrieveProject(): void {
-        this.projectService
+        this.projects$ = this.projectService
             .getAll()
             .snapshotChanges()
             .pipe(
@@ -412,7 +426,7 @@ export class ProjectComponent implements OnInit, AfterViewInit {
             });
     }
     retrieveUsers(): void {
-        this.userService
+        this.users$ = this.userService
             .getAll()
             .snapshotChanges()
             .pipe(

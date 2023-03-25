@@ -42,6 +42,8 @@ export class EditorComponent implements OnInit, OnDestroy, AfterViewInit {
     project: ProjectViewModel = new ProjectViewModel();
     // isNew = true;
 
+    private projects$: any;
+
     constructor(
         private readonly commentService: CommentService,
         private readonly snackBar: SnackbarService,
@@ -58,6 +60,7 @@ export class EditorComponent implements OnInit, OnDestroy, AfterViewInit {
 
     ngOnDestroy(): void {
         this.id = '';
+        this.projects$.unsubscribe();
     }
 
     ngAfterViewInit(): void {
@@ -65,7 +68,7 @@ export class EditorComponent implements OnInit, OnDestroy, AfterViewInit {
     }
 
     retrieveProject(): void {
-        this.projectService
+        this.projects$ = this.projectService
             .getAll()
             .snapshotChanges()
             .pipe(

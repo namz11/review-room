@@ -1,6 +1,7 @@
 import {
     Component,
     Input,
+    OnDestroy,
     OnInit,
     TemplateRef,
     ViewChild,
@@ -29,7 +30,7 @@ import {
     templateUrl: './file-chooser.component.html',
     styleUrls: ['./file-chooser.component.scss'],
 })
-export class FileChooserComponent implements OnInit {
+export class FileChooserComponent implements OnInit, OnDestroy {
     @Input() projectKey = '';
     @Input() showFooter = true;
     @Input() addAsActive = true;
@@ -53,6 +54,8 @@ export class FileChooserComponent implements OnInit {
 
     uploadsRef: AngularFireList<Picture>;
     private basePath = '/uploads';
+
+    private uploads$: any;
 
     constructor(
         private readonly formBuilder: UntypedFormBuilder,
@@ -82,8 +85,11 @@ export class FileChooserComponent implements OnInit {
             this.myModal();
         });
     }
+    ngOnDestroy(): void {
+        this.uploads$.unsubscribe();
+    }
     retrieveFiles(): void {
-        this.uploadService
+        this.uploads$ = this.uploadService
             .getAll()
             .snapshotChanges()
             .pipe(

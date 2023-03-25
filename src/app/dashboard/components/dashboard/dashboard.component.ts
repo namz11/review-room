@@ -4,6 +4,7 @@ import {
     AfterViewInit,
     ViewChild,
     TemplateRef,
+    OnDestroy,
 } from '@angular/core';
 import { Router } from '@angular/router';
 import { PictureViewModel } from '@models/file.model';
@@ -37,7 +38,7 @@ import { UserViewModel } from '@models/user.model';
     templateUrl: './dashboard.component.html',
     styleUrls: ['./dashboard.component.scss'],
 })
-export class DashboardComponent implements OnInit, AfterViewInit {
+export class DashboardComponent implements OnInit, AfterViewInit, OnDestroy {
     @ViewChild('deleteProjectModal')
     private deleteProjectModal!: TemplateRef<any>;
     @ViewChild('share')
@@ -66,6 +67,9 @@ export class DashboardComponent implements OnInit, AfterViewInit {
     isLoading = false;
 
     private projectNameSubject: Subject<any> = new Subject();
+    private projects$: any;
+    private users$: any;
+    private uploads$: any;
 
     constructor(
         private readonly projectService: ProjectService,
@@ -117,8 +121,14 @@ export class DashboardComponent implements OnInit, AfterViewInit {
                     });
             });
     }
+    ngOnDestroy(): void {
+        this.projectNameSubject.unsubscribe();
+        this.projects$.unsubscribe();
+        this.users$.unsubscribe();
+        this.uploads$.unsubscribe();
+    }
     retrieveProjects(): void {
-        this.projectService
+        this.projects$ = this.projectService
             .getAll()
             .snapshotChanges()
             .pipe(
@@ -157,7 +167,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
             });
     }
     retrieveFiles(): void {
-        this.uploadService
+        this.uploads$ = this.uploadService
             .getAll()
             .snapshotChanges()
             .pipe(
@@ -186,7 +196,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
             });
     }
     retrieveUsers(): void {
-        this.userService
+        this.users$ = this.userService
             .getAll()
             .snapshotChanges()
             .pipe(
