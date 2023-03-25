@@ -72,7 +72,7 @@ export class QuillEditorComponent implements OnInit, OnDestroy, AfterViewInit {
     }
 
     retrieveProject(): void {
-        this.projectService
+        this.projects$ = this.projectService
             .getAll()
             .snapshotChanges()
             .pipe(
