@@ -1,27 +1,43 @@
-# ReviewRoom
+# Review Room
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 14.2.11.
+Share feedback on designs, websites, UI/UX or any picture in a collaborative way. Comment and manage reviews in one place. Start using [ReviewRoom](https://reviewroom.netlify.app/)
 
-## Development server
+## Product Demo
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+Checkout the product demo [here](https://www.dropbox.com/s/42x5j5b6sclrvh1/ReviewRoomDemo.mov).
 
-## Code scaffolding
+## Set up
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+Navigate to the root of the project & run the below scripts -
 
-## Build
+1. Install the node_modules using npm
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+```
+npm install
+```
 
-## Running unit tests
+2. Create a firebase project. You will need Authentication, Realtime Database and Storage.
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+3. Create a .env file in the root folder and add the firebase config.
 
-## Running end-to-end tests
+    -- OR --
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+    Go to src/app/environments/environment.ts and add the firebase config.
 
-## Further help
+4. Run the dev server. Navigate to `http://localhost:4600/`.
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+```
+npm start
+```
+
+## Contributors
+
+<table>
+  <tr>
+    <td align="center"><a href="https://github.com/namz11"><img src="https://avatars.githubusercontent.com/u/14045632?v=4" width="100px;" alt="Narmit"/><br /><sub><b>Narmit Mashruwala</b></sub></a></td>
+  </tr>
+</table>
+
+## License
+
+ReviewRoom is available under the MIT license. See the [LICENSE](LICENSE) file for more info.
