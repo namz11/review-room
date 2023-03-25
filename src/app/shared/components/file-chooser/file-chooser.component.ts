@@ -389,7 +389,7 @@ export class FileChooserComponent implements OnInit, OnDestroy {
         (fileInput as any).value = '';
         this.modalService.dismissAll(this.content);
     }
-    createMarkup(): void {
+    createRoom(): void {
         const id2delete = [];
         this.removeUploads.map((u) => {
             this.allUploads
