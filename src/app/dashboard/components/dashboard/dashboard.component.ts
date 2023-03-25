@@ -213,7 +213,7 @@ export class DashboardComponent implements OnInit, AfterViewInit, OnDestroy {
                 );
             });
     }
-    openMarkup(project: any): void {
+    openRoom(project: any): void {
         if (project && toString(project.key).trim() !== '') {
             void this.router.navigate(['/project', project.key]);
 
