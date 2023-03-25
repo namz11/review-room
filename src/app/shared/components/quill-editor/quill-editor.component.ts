@@ -47,6 +47,8 @@ export class QuillEditorComponent implements OnInit, OnDestroy, AfterViewInit {
     currentUserKey = '';
     project: ProjectViewModel = new ProjectViewModel();
 
+    private projects$: any;
+
     constructor(
         private readonly commentService: CommentService,
         private readonly snackBar: SnackbarService,
@@ -66,6 +68,7 @@ export class QuillEditorComponent implements OnInit, OnDestroy, AfterViewInit {
 
     ngOnDestroy(): void {
         this.id = '';
+        this.projects$.unsubscribe();
     }
 
     retrieveProject(): void {
